@@ -103,19 +103,17 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-
-      - name: Install MkDocs
-        run: pip install mkdocs mkdocs-material
-
-      - name: Build docs
+      - name: Setup documentation
         run: |
-          mkdir -p public
+          mkdir -p docs
           echo "# MLOps Repository" > public/index.md
           echo "site_name: AITH-MLOPS" > mkdocs.yml
-          mkdocs build --site-dir public
+
+      - name: Build documentation
+        run: poetry run mkdocs build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./site
