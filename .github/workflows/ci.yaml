@@ -106,6 +106,7 @@ jobs:
       - name: Generate and publish documentation
         run: |
           pip install mkdocs mkdocs-material
+          mkdir -p public
           echo "# MLOps Repository Documentation" > public/index.md
           mkdocs build --site-dir public
 
