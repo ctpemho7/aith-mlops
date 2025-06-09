@@ -108,6 +108,7 @@ jobs:
           pip install mkdocs mkdocs-material
           mkdir -p public
           echo "# MLOps Repository Documentation" > public/index.md
+          echo "site_name: MLOps Repository" > mkdocs.yml
           mkdocs build --site-dir public
 
       - name: Deploy to GitHub Pages
