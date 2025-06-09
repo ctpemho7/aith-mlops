@@ -55,7 +55,7 @@ docker run -it flights:hw1
 Внутри контейнера запустить обучение и расчет на валидационном датасете:
 
 ```sh
-python model/train.py
+python aith_mlops/train.py
 ```
 
 Или одной командой:
@@ -63,7 +63,7 @@ python model/train.py
 Пример вывода:
 
 ```sh
-PS C:\itmo\2025_2\mlops\aith-mlops> docker run --rm flights:hw1 python model/train.py
+desktop:~/mlops/aith-mlops$ docker run --rm flights:hw1 python aith_mlops/train.py
 Запуск обучения
 Данные получены
 Обучение модели
