@@ -106,9 +106,11 @@ jobs:
       - name: Generate and publish documentation
         run: |
           pip install mkdocs mkdocs-material
-          mkdir -p public
-          echo "# MLOps Repository Documentation" > public/index.md
+          mkdir -p docs
+          echo "# MLOps Repository Documentation" > docs/index.md
           echo "site_name: MLOps Repository" > mkdocs.yml
+          echo "nav:" >> mkdocs.yml
+          echo "  - Home: index.md" >> mkdocs.yml
           mkdocs build --site-dir public
 
       - name: Deploy to GitHub Pages
