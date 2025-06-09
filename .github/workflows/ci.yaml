@@ -109,13 +109,13 @@ jobs:
 
       - name: Build docs
         run: |
-          mkdir -p docs
-          echo "# MLOps Repository" > docs/index.md
+          mkdir -p public
+          echo "# MLOps Repository" > public/index.md
           echo "site_name: AITH-MLOPS" > mkdocs.yml
-          mkdocs build --site-dir docs
+          mkdocs build --site-dir public
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: ./public
