@@ -192,3 +192,8 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# ignored by lakectl local
+lakefs_data/*
+!lakefs_data/.lakefs_ref.yaml
+# End ignored by lakectl local

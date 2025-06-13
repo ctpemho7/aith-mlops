@@ -12,6 +12,74 @@
 
 После готовности фичи она пушится в репозиторий и создается `Pull Request`. Необходимо выполнить прогон линтеров и провести ревью кода. Все изменения вливаются в `main`.
 
+## Работа с версионированием данных 
+
+Для версионирования используется LakeFS, поднятый с помощью Docker Compose.
+
+Для работя локально должна быть установлена утилита [lakectl](https://docs.lakefs.io/reference/cli.html#installing-lakectl-locally).
+
+Начальная конфигурация CLI:
+
+```sh
+lakectl config
+```
+
+Список доступных репозиториев:
+
+```sh
+lakectl repo list
+```
+
+Нужно создать бакет в S3 для создания репозитория:
+
+```sh
+lakectl repo create lakefs://repository s3://bucket_name
+```
+
+Создание новой ветки в репозитории
+
+```sh
+lakectl branch create lakefs://repository/branch_name --source lakefs://repository/source_branch_name
+```
+
+Создание коммита:
+
+```sh
+lakectl commit lakefs://repository/branch_name -m "Create a dataset"
+```
+
+Merge веток:
+
+```sh
+lakectl merge lakefs://repository/branch_name --source lakefs://repository/main
+```
+
+Для того, чтобы работать с датасетом локально, нужно воспользоваться `lakefs local`.
+
+Клонирование раннее созданой ветки локально:
+
+```sh
+lakectl local clone lakefs://repository/branch_name/directory_name/  local_directory_name
+```
+
+Проверка, что все корректно связалось:
+
+```sh
+lakectl local list
+```
+
+Просмотр локальных изменений по сравнению с remote: 
+
+```sh
+lakectl local status local_directory_name
+```
+
+Коммит изменений, все закомиченные изменения появляются в remote:
+
+```sh
+lakectl local commit -m "commit message" local_directory_name
+```
+
 ## Работа с линтерами и форматтерами
 
 Должны быть установлены зависимости из группы dev. Если нет, то надо выполнить команду:
