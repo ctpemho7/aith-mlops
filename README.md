@@ -64,7 +64,7 @@ lakectl local clone lakefs://repository/branch_name/directory_name/  local_direc
 В данном репозитории
 
 ```sh
-lakectl local clone lakefs://flights/main/  flights_data
+lakectl local clone lakefs://repository/main/  flights_data
 ```
 
 Проверка, что все корректно связалось:

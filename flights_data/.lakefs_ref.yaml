@@ -1,3 +1,3 @@
-src: lakefs://flights/main/
-at_head: e7f82e72f91073254da8e33820f800ee14b14ebe2e82809a2f6d7909afd2a2b6
+src: lakefs://repository/main/
+at_head: 133736306eb8cb886996bb0a6035ad48f3ef9876c15bd991e67cb82f96fbe0de
 active_operation: ""
