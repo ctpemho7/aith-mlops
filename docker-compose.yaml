@@ -1,18 +1,4 @@
-version: "3.5"
 services:
-  jupyterlab:
-    image: jupyter/datascience-notebook
-    environment:
-      - JUPYTER_ENABLE_LAB=yes
-    ports:
-      - "8888:8888"
-    volumes:
-      - ./notebooks:/home/jovyan/work
-    working_dir: /home/jovyan/work
-    depends_on:
-      lakefs: 
-        condition: service_completed_successfully
-
   lakefs:
     image: treeverse/lakefs:1
     pull_policy: always
@@ -84,9 +70,7 @@ services:
       - "9000:9000"
       - "9001:9001"
     entrypoint: ["minio", "server", "/data", "--console-address", ":9001"]
-    volumes:
-      - minio_data:/data
-
+  
   postgres:
     image: postgres:14
     environment:

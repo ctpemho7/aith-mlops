@@ -61,6 +61,11 @@ lakectl merge lakefs://repository/branch_name --source lakefs://repository/main
 ```sh
 lakectl local clone lakefs://repository/branch_name/directory_name/  local_directory_name
 ```
+В данном репозитории
+
+```sh
+lakectl local clone lakefs://flights/main/  flights_data
+```
 
 Проверка, что все корректно связалось:
 
