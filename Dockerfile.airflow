@@ -1,0 +1,9 @@
+FROM apache/airflow:latest-python3.11
+
+COPY requirements.txt .
+
+# RUN python -m pip install "apache-airflow[postgres]==2.8.3" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.8.3/constraints-3.8.txt"
+# --no-deps так как зависимости уже разрешены
+RUN pip install --no-deps --no-cache-dir --upgrade -r requirements.txt
+
+USER airflow
