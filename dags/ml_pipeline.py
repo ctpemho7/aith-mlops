@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 
-from utils import TEST_FILENAME, TRAIN_FILENAME, get_data, transform_data, train_model, test_model
+from utils import TEST_FILENAME, TRAIN_FILENAME, get_data, transform_data, train_model, test_model, write_data
 
 
 default_args = {
@@ -61,6 +61,11 @@ def test_model():
     y_valid = ti.xcom_pull(task_ids='train_model_task', key='y_valid')
 
     test_model(xgb_model, X_valid, y_valid)
+    write_data(xgb_model, 
+        "xgb_model.json", 
+        "model trained", 
+        "json")
+    
     print("Тестирование модели завершено")
 
 

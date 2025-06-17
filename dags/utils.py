@@ -1,6 +1,7 @@
 from lakefs.client import Client
 import lakefs
 import pandas as pd
+import json
 
 
 TEST_FILENAME = "flight_delays_test.csv"
@@ -20,7 +21,15 @@ def get_data(dataframe_name):
        df = pd.read_csv(f)
     return df
 
-    
+def write_data(data, repo_path, commit_message, file_type, branch="main"):
+    branch_ref = repo.branch(branch)
+    with branch_ref.object(repo_path).writer(mode="wb") as f:
+        if file_type == "json":
+            f.write(json.dumps(data).encode('utf-8'))
+        elif format == 'csv':
+            pd.DataFrame.from_dict(data).to_csv(f, index=False)
+    branch_ref.commit(commit_message)
+
 def transform_data(train, test):
     train['Month'] = train['Month'].str[2:].astype('int')
     train['DayofMonth'] = train['DayofMonth'].str[2:].astype('int')
