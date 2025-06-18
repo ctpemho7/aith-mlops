@@ -14,6 +14,9 @@ xgboost = "^3.0.2"
 lakefs = "^0.11.1"
 jupyterlab = "^4.4.3"
 lakefs-sdk = "^1.60.0"
+clearml = "^2.0.0"
+catboost = "^1.2.8"
+optuna = "^4.4.0"
 
 
 [tool.poetry.group.dev.dependencies]

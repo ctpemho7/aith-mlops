@@ -12,6 +12,60 @@
 
 После готовности фичи она пушится в репозиторий и создается `Pull Request`. Необходимо выполнить прогон линтеров и провести ревью кода. Все изменения вливаются в `main`.
 
+## Трекинг экспериментов
+
+### Установка
+
+В качестве трекера для экспериментов используется ClearML.
+
+Для развертывания используется пакет `clearml`. Установка через poetry:
+
+```sh
+poetry add clearml
+```
+
+Подробнее об установке по [ссылке](https://clear.ml/docs/latest/docs/clearml_sdk/clearml_sdk_setup).
+
+### Использование
+
+В коде необходимо импортировать пакет и создать объект `Task`:
+
+```py
+from clearml import Task
+
+task = Task.init(project_name='great project', task_name='best task')
+```
+
+Логирование метрик:
+
+```py
+logger = task.get_logger()
+logger.report_scalar(title="Metrics", series=metric_name, value=metric_value, iteration=0)
+```
+
+Логирование артефактов:
+
+```py
+logger = task.get_logger()
+task.upload_artifact(name="test_data", artifact_object=DATA_PATH + "flight_delays_test.csv")
+```
+
+Сохранение параметров:
+
+```py
+task.connect(best_params, name="Best Parameters")
+```
+
+Данные загружаются локально с использованием LakeF, развернутого раннее в Docker.
+
+### Сравнительный анализ
+
+ClearML позволяет строить графики прямо из веб-интерфейса:
+
+![clearml-comp.png](imgs/clearml-comp.png)
+
+Более подробный сравнительный анализ приведен в `notebooks/model_comparasion.ipynb`.
+
 ## Работа с версионированием данных 
 
 Для версионирования используется LakeFS, поднятый с помощью Docker Compose.

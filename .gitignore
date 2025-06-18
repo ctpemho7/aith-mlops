@@ -199,3 +199,5 @@ lakefs_data/*
 flights_data/*
 !flights_data/.lakefs_ref.yaml
 # End ignored by lakectl local
+
+catboost_info/
